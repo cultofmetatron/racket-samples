@@ -34,9 +34,24 @@ this is a guessing game that finds out what you wanted via binary search
                     (cond [(> (+ sum denominator) numerator) (- numerator sum)]
                           [(= sum numerator) 0]
                           [else (recur numerator denominator (+ sum denominator) (+ 1 counter))]))])
-    (recur numerator denominator 0 0)))
+    (if (> numerator denominator)
+        (recur numerator denominator 0 0)
+        numerator)))
   
+(define (not-eq? a b)
+  (not (eq? a b)))
 
+(define (gcd a b)
+  (letrec ([recur (lambda (a b)
+                    (cond [(not-eq? b 0) (recur b (mod a b))]
+                          [else a]))])
+    (recur a b)))
+
+
+
+
+
+                          
 
 
 
